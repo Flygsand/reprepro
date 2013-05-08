@@ -6,13 +6,14 @@ AC_INIT(reprepro, 4.12.5, brlink@debian.org)
 AC_CONFIG_SRCDIR(main.c)
 AC_CONFIG_AUX_DIR(ac)
 AM_INIT_AUTOMAKE([-Wall -Werror -Wno-portability])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 
 if test "${CFLAGS+set}" != set ; then
 	CFLAGS="-Wall -O2 -g -Wmissing-prototypes -Wstrict-prototypes -Wshadow"
 fi
 
 AM_MAINTAINER_MODE
+AC_CANONICAL_HOST
 AC_GNU_SOURCE
 
 AC_PROG_CC_C99
@@ -28,6 +29,16 @@ if test "$found_mktemp" = "no" ; then
 	AC_MSG_ERROR([Missing mkstemp or mkostemp])
 fi
 AC_CHECK_FUNC([vasprintf],,[AC_MSG_ERROR([Could not find vasprintf implementation!])])
+
+case "${host}" in
+	*-*-darwin*)
+		AH_VERBATIM([O_LARGEFILE],
+		[/* OSX naturally supports 64-bit files */
+		#ifndef O_LARGEFILE
+		# define O_LARGEFILE 0
+		#endif])
+		;;
+esac
 
 DBLIBS=""
 # the only way to find out which is compileable is to look into db.h:

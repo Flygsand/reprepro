@@ -15,15 +15,16 @@ ARCHIVE_UNUSED = ar.c debfile.c debfilecontents.c
 endif
 
 AM_CPPFLAGS = $(ARCHIVECPP) $(DBCPPFLAGS)
+AM_CFLAGS = -fnested-functions
 reprepro_LDADD = $(ARCHIVELIBS) $(DBLIBS)
 changestool_LDADD = $(ARCHIVELIBS)
 
-reprepro_SOURCES = sizes.c sourcecheck.c byhandhook.c archallflood.c needbuild.c globmatch.c printlistformat.c diffindex.c rredpatch.c pool.c atoms.c uncompression.c remoterepository.c indexfile.c copypackages.c sourceextraction.c checksums.c readtextfile.c filecntl.c sha1.c sha256.c configparser.c database.c freespace.c log.c changes.c incoming.c uploaderslist.c guesscomponent.c files.c md5.c dirs.c chunks.c reference.c binaries.c sources.c checks.c names.c dpkgversions.c release.c mprintf.c updates.c strlist.c signature_check.c signedfile.c signature.c distribution.c checkindeb.c checkindsc.c checkin.c upgradelist.c target.c aptmethod.c downloadcache.c main.c override.c terms.c termdecide.c ignore.c filterlist.c exports.c tracking.c optionsfile.c donefile.c pull.c contents.c filelist.c $(ARCHIVE_USED) $(ARCHIVE_CONTENTS)
+reprepro_SOURCES = compat/tdestroy.c sizes.c sourcecheck.c byhandhook.c archallflood.c needbuild.c globmatch.c printlistformat.c diffindex.c rredpatch.c pool.c atoms.c uncompression.c remoterepository.c indexfile.c copypackages.c sourceextraction.c checksums.c readtextfile.c filecntl.c sha1.c sha256.c configparser.c database.c freespace.c log.c changes.c incoming.c uploaderslist.c guesscomponent.c files.c md5.c dirs.c chunks.c reference.c binaries.c sources.c checks.c names.c dpkgversions.c release.c mprintf.c updates.c strlist.c signature_check.c signedfile.c signature.c distribution.c checkindeb.c checkindsc.c checkin.c upgradelist.c target.c aptmethod.c downloadcache.c main.c override.c terms.c termdecide.c ignore.c filterlist.c exports.c tracking.c optionsfile.c donefile.c pull.c contents.c filelist.c $(ARCHIVE_USED) $(ARCHIVE_CONTENTS)
 EXTRA_reprepro_SOURCE = $(ARCHIVE_UNUSED)
 
-changestool_SOURCES = uncompression.c sourceextraction.c readtextfile.c filecntl.c tool.c chunkedit.c strlist.c checksums.c sha1.c sha256.c md5.c mprintf.c chunks.c signature.c dirs.c names.c $(ARCHIVE_USED)
+changestool_SOURCES = compat/tdestroy.c uncompression.c sourceextraction.c readtextfile.c filecntl.c tool.c chunkedit.c strlist.c checksums.c sha1.c sha256.c md5.c mprintf.c chunks.c signature.c dirs.c names.c $(ARCHIVE_USED)
 
-rredtool_SOURCES = rredtool.c rredpatch.c mprintf.c filecntl.c sha1.c
+rredtool_SOURCES = compat/tdestroy.c rredtool.c rredpatch.c mprintf.c filecntl.c sha1.c
 
 noinst_HEADERS = sizes.h sourcecheck.h byhandhook.h archallflood.h needbuild.h globmatch.h printlistformat.h pool.h atoms.h uncompression.h remoterepository.h copypackages.h sourceextraction.h checksums.h readtextfile.h filecntl.h sha1.h sha256.h configparser.h database_p.h database.h freespace.h log.h changes.h incoming.h guesscomponent.h md5.h dirs.h files.h chunks.h reference.h binaries.h sources.h checks.h names.h release.h error.h mprintf.h updates.h strlist.h signature.h signature_p.h distribution.h debfile.h checkindeb.h checkindsc.h upgradelist.h target.h aptmethod.h downloadcache.h override.h terms.h termdecide.h ignore.h filterlist.h dpkgversions.h checkin.h exports.h globals.h tracking.h trackingt.h optionsfile.h donefile.h pull.h ar.h filelist.h contents.h chunkedit.h uploaderslist.h indexfile.h rredpatch.h diffindex.h
 

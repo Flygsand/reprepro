@@ -1,6 +1,8 @@
 #ifndef REPREPRO_DISTRIBUTION_H
 #define REPREPRO_DISTRIBUTION_H
 
+#include <time.h>
+
 struct distribution;
 
 #ifndef REPREPRO_ERROR_H
